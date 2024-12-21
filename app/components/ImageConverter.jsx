@@ -37,6 +37,12 @@ export default function ImageConverter() {
     setConvertedImages(convertedFiles);
   };
 
+  const downloadConverted = async (fileUrl, fileName) => {
+    const response = await fetch(fileUrl);
+    const blob = await response.blob();
+    saveAs(blob, fileName);
+  };
+
   const downloadAllConverted = async () => {
     if (convertedImages.length === 0) return;
 
@@ -132,24 +138,37 @@ export default function ImageConverter() {
           <h2 className="text-lg font-semibold mb-2">Converted Images</h2>
           <div className="grid grid-cols-3 gap-4">
             {convertedImages.map((image, index) => (
-              <div key={index} className="flex justify-center items-center">
+              <div
+                key={index}
+                className="flex justify-center items-center gap-2"
+              >
                 <Image
                   src={image.url}
                   alt={`Converted ${image.name}`}
                   width={100}
                   height={100}
-                  className="max-w-full h-auto"
+                  className="max-w-full h-auto border"
                 />
+                <div className="mt-2">
+                  <button
+                    onClick={() => downloadConverted(image.url, image.name)}
+                    className="bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Download Image
+                  </button>
+                </div>
               </div>
             ))}
           </div>
 
-          <button
-            onClick={downloadAllConverted}
-            className="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Download All Converted Images
-          </button>
+          {selectedFiles.length > 1 && (
+            <button
+              onClick={downloadAllConverted}
+              className="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Download All Converted Images
+            </button>
+          )}
         </div>
       )}
     </div>

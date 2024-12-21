@@ -147,7 +147,7 @@ export default function ImageConverter() {
                   alt={`Converted ${image.name}`}
                   width={100}
                   height={100}
-                  className="max-w-full h-auto border"
+                  className="max-w-full h-auto"
                 />
                 <div className="mt-2">
                   <button
@@ -166,7 +166,7 @@ export default function ImageConverter() {
               onClick={downloadAllConverted}
               className="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-              Download All Converted Images
+              Download All Converted Images ({convertedImages.length})
             </button>
           )}
         </div>

@@ -1,19 +1,17 @@
 "use client";
 
-import { saveAs } from "file-saver";
-import JSZip from "jszip";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function ImageConverter() {
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [convertedImages, setConvertedImages] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [convertedImage, setConvertedImage] = useState(null);
   const [conversionFormat, setConversionFormat] = useState("png");
 
   const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setSelectedFiles(files);
-    setConvertedImages([]); // Reset converted images when new files are selected
+    const file = event.target.files[0];
+    setSelectedFile(file);
+    setConvertedImage(null); // Reset converted image when a new file is selected
   };
 
   const handleFormatChange = (event) => {
@@ -21,45 +19,14 @@ export default function ImageConverter() {
   };
 
   const handleConvert = async () => {
-    if (selectedFiles.length === 0) return;
+    if (!selectedFile) return;
 
-    const convertedFiles = [];
-
-    for (const file of selectedFiles) {
-      // Simulating image conversion by creating a new Blob
-      const fakeConvertedBlob = new Blob([await file.arrayBuffer()], {
-        type: `image/${conversionFormat}`,
-      });
-      const convertedImageURL = URL.createObjectURL(fakeConvertedBlob);
-      convertedFiles.push({ name: file.name, url: convertedImageURL });
-    }
-
-    setConvertedImages(convertedFiles);
-  };
-
-  const downloadConverted = async (fileUrl, fileName) => {
-    const response = await fetch(fileUrl);
-    const blob = await response.blob();
-    saveAs(blob, fileName);
-  };
-
-  const downloadAllConverted = async () => {
-    if (convertedImages.length === 0) return;
-
-    const zip = new JSZip();
-
-    // Add each converted image to the zip file
-    for (const { name, url } of convertedImages) {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const fileName = `${name.split(".")[0]}.${conversionFormat}`;
-      zip.file(fileName, blob);
-    }
-
-    // Generate the zip file and trigger the download
-    zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, "converted-images.zip");
+    // In a real application, you would send the file to your server or use a client-side library for conversion
+    // For this example, we'll simulate a conversion by creating a object URL
+    const fakeConvertedBlob = new Blob([await selectedFile.arrayBuffer()], {
+      type: `image/${conversionFormat}`,
     });
+    setConvertedImage(URL.createObjectURL(fakeConvertedBlob));
   };
 
   return (
@@ -69,13 +36,12 @@ export default function ImageConverter() {
           htmlFor="image-upload"
           className="block text-sm font-medium text-gray-700 mb-2"
         >
-          Upload Images
+          Upload Image
         </label>
         <input
           type="file"
           id="image-upload"
           accept="image/*"
-          multiple
           onChange={handleFileChange}
           className="block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
@@ -86,22 +52,16 @@ export default function ImageConverter() {
         />
       </div>
 
-      {selectedFiles.length > 0 && (
+      {selectedFile && (
         <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-2">Selected Images</h2>
-          <div className="grid grid-cols-3 gap-4">
-            {selectedFiles.map((file, index) => (
-              <div key={index} className="flex justify-center items-center">
-                <Image
-                  src={URL.createObjectURL(file)}
-                  alt={`Selected ${file.name}`}
-                  width={100}
-                  height={100}
-                  className="max-w-full h-auto"
-                />
-              </div>
-            ))}
-          </div>
+          <h2 className="text-lg font-semibold mb-2">Selected Image</h2>
+          <Image
+            src={URL.createObjectURL(selectedFile)}
+            alt="Selected"
+            width={300}
+            height={300}
+            className="max-w-full h-auto"
+          />
         </div>
       )}
 
@@ -127,48 +87,29 @@ export default function ImageConverter() {
 
       <button
         onClick={handleConvert}
-        disabled={selectedFiles.length === 0}
+        disabled={!selectedFile}
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50"
       >
-        Convert Images
+        Convert Image
       </button>
 
-      {convertedImages.length > 0 && (
+      {convertedImage && (
         <div className="mt-6">
-          <h2 className="text-lg font-semibold mb-2">Converted Images</h2>
-          <div className="grid grid-cols-3 gap-4">
-            {convertedImages.map((image, index) => (
-              <div
-                key={index}
-                className="flex justify-center items-center gap-2"
-              >
-                <Image
-                  src={image.url}
-                  alt={`Converted ${image.name}`}
-                  width={100}
-                  height={100}
-                  className="max-w-full h-auto"
-                />
-                <div className="mt-2">
-                  <button
-                    onClick={() => downloadConverted(image.url, image.name)}
-                    className="bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Download Image
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {selectedFiles.length > 1 && (
-            <button
-              onClick={downloadAllConverted}
-              className="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Download All Converted Images ({convertedImages.length})
-            </button>
-          )}
+          <h2 className="text-lg font-semibold mb-2">Converted Image</h2>
+          <Image
+            src={convertedImage}
+            alt="Converted"
+            width={300}
+            height={300}
+            className="max-w-full h-auto mb-4"
+          />
+          <a
+            href={convertedImage}
+            download={`converted.${conversionFormat}`}
+            className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Download Converted Image
+          </a>
         </div>
       )}
     </div>

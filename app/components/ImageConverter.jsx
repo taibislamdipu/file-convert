@@ -11,23 +11,34 @@ export default function ImageConverter() {
   const [conversionFormat, setConversionFormat] = useState("jpg");
   const [zipUrl, setZipUrl] = useState(null);
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setSelectedFiles((prevFiles) => [...prevFiles, ...files]); // Append new files
+  // Handle file change (for both drag-and-drop and file input)
+  const handleFileChange = (files) => {
+    const validFiles = Array.from(files).filter((file) =>
+      file.type.startsWith("image/")
+    );
+
+    if (validFiles.length !== files.length) {
+      alert("Some of the uploaded files are not image files.");
+    }
+
+    setSelectedFiles((prevFiles) => [...prevFiles, ...validFiles]);
     setConvertedImages([]);
     setZipUrl(null);
   };
 
+  // Remove selected file from list
   const removeFile = (indexToRemove) => {
     setSelectedFiles((prevFiles) =>
       prevFiles.filter((_, index) => index !== indexToRemove)
     );
   };
 
+  // Handle format selection
   const handleFormatChange = (event) => {
     setConversionFormat(event.target.value);
   };
 
+  // Handle image conversion
   const handleConvert = async () => {
     if (selectedFiles.length === 0) return;
 
@@ -59,6 +70,18 @@ export default function ImageConverter() {
     setConvertedImages(convertedFiles);
   };
 
+  // Handle drag-over event (to allow dropping)
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  // Handle drop event (to process dropped files)
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    handleFileChange(files);
+  };
+
   return (
     <div className="bg-white shadow sm:rounded-lg p-6">
       <div className="mb-6">
@@ -68,18 +91,20 @@ export default function ImageConverter() {
         >
           Upload Images
         </label>
+        <div
+          className="border-dashed border-2 border-gray-300 p-6 mb-4 text-center"
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        >
+          <p>Drag & Drop your image files here</p>
+        </div>
         <input
           type="file"
           id="image-upload"
           accept="image/*"
-          onChange={handleFileChange}
+          onChange={(e) => handleFileChange(e.target.files)}
           multiple
-          className="block w-full text-sm text-gray-500
-            file:mr-4 file:py-2 file:px-4
-            file:rounded-full file:border-0
-            file:text-sm file:font-semibold
-            file:bg-blue-50 file:text-blue-700
-            hover:file:bg-blue-100"
+          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
         />
       </div>
 
@@ -163,7 +188,6 @@ export default function ImageConverter() {
           >
             <MdFileDownload size={20} />
             Download
-            {/* {convertedImages[0].name} */}
           </a>
         </div>
       )}

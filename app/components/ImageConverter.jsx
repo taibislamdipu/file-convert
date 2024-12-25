@@ -124,7 +124,12 @@ export default function ImageConverter() {
                   height={150}
                   className="max-w-full h-auto"
                 />
-                <p className="text-sm text-center mt-2">{file.name}</p>
+                <p
+                  className="text-sm text-center mt-2 line-clamp-1"
+                  title={file.name}
+                >
+                  {file.name}
+                </p>
                 <button
                   onClick={() => removeFile(index)}
                   className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"

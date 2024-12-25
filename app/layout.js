@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         {/* Facebook Meta Tags */}
         <meta
           property="og:url"
-          content="https://file-convert-azure.vercel.app/"
+          content="https://19-20-file-converter.vercel.app"
         />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={metadata.title} />
@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
         />
         <meta
           property="twitter:url"
-          content="https://file-convert-azure.vercel.app/"
+          content="https://19-20-file-converter.vercel.app"
         />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />

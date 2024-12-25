@@ -25,7 +25,8 @@ export default function RootLayout({ children }) {
       <Head>
         {/* Basic Meta Tags */}
         <title>
-          Online Image Converter | PNG, JPG, GIF, WebP - Best Quality & Free
+          Unlimited Online Image Converter | PNG, JPG, GIF, WebP - Best Quality
+          & Free
         </title>
         <meta
           name="description"
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
         {/* Facebook Meta Tags */}
         <meta
           property="og:url"
-          content="https://19-20-file-converter.vercel.app"
+          content="https://19-20-file-converter.vercel.app/"
         />
         <meta property="og:type" content="website" />
         <meta
@@ -48,7 +49,7 @@ export default function RootLayout({ children }) {
         />
         <meta
           property="og:image"
-          content="https://opengraph.b-cdn.net/production/images/433ae6a4-3ec4-475a-a779-bdbab90f2e34.png?token=tFj0g840yMVqOQHg798CNRaDeEcZU17jWP_jDjwlx20&height=630&width=1200&expires=33271125229"
+          content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/19-20-file-converter.vercel.app/Online%20Image%20Converter%20%7C%20PNG%2C%20JPG%2C%20GIF%2C%20WebP%20-%20Best%20Quality%20%26%20Free/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2Fd86a4f9e-3802-4819-947a-1a4277381c28.png%3Ftoken%3DrTDWrar5A8bvFazl6aMOsMosmnZ_wpeWWT3WCBe0Fck%26height%3D630%26width%3D1200%26expires%3D33271126621/og.png"
         />
 
         {/* Twitter Meta Tags */}
@@ -59,7 +60,7 @@ export default function RootLayout({ children }) {
         />
         <meta
           property="twitter:url"
-          content="https://19-20-file-converter.vercel.app"
+          content="https://19-20-file-converter.vercel.app/"
         />
         <meta
           name="twitter:title"
@@ -71,7 +72,7 @@ export default function RootLayout({ children }) {
         />
         <meta
           name="twitter:image"
-          content="https://opengraph.b-cdn.net/production/images/433ae6a4-3ec4-475a-a779-bdbab90f2e34.png?token=tFj0g840yMVqOQHg798CNRaDeEcZU17jWP_jDjwlx20&height=630&width=1200&expires=33271125229"
+          content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/19-20-file-converter.vercel.app/Online%20Image%20Converter%20%7C%20PNG%2C%20JPG%2C%20GIF%2C%20WebP%20-%20Best%20Quality%20%26%20Free/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fimages%2Fd86a4f9e-3802-4819-947a-1a4277381c28.png%3Ftoken%3DrTDWrar5A8bvFazl6aMOsMosmnZ_wpeWWT3WCBe0Fck%26height%3D630%26width%3D1200%26expires%3D33271126621/og.png"
         />
       </Head>
       <body

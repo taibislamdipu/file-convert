@@ -1,37 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Online Image Converter
 
-## Getting Started
+Convert images between PNG, JPG, GIF, and WebP formats easily with this web application. Enjoy unlimited downloads and conversions with the best quality output, all for free!
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Multiple Image Formats Supported:** Convert between PNG, JPG, GIF, and WebP.
+- **Batch Conversion:** Upload and convert multiple images at once.
+- **High-Quality Output:** Ensures the best quality for all converted images.
+- **Flexible Downloads:**
+  - Single file download for individual images.
+  - Zip file download for multiple images.
+- **User-Friendly Interface:** Modern and intuitive design for seamless navigation.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live Demo
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Check out the live version of the app [here](https://19-20-file-converter.vercel.app).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- **Frontend:** Next.js, Tailwind CSS
+- **Backend:** Not applicable (frontend-focused project)
+- **Others:** JSZip for zip file generation, Vercel for deployment
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Follow these steps to run the project locally:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/online-image-converter.git
+   cd online-image-converter
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and visit:
+   ```
+   http://localhost:3000
+   ```
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Upload Images:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# file-convert
+   - Click on the "Upload Images" button and select files from your device.
+   - Delete any unwanted images using the cross icon on each uploaded image.
+
+2. **Select Format:**
+
+   - Choose the desired format (PNG, JPG, GIF, or WebP) from the dropdown menu.
+
+3. **Convert:**
+
+   - Click the "Convert" button to process the images.
+
+4. **Download:**
+   - Single Image: Direct download.
+   - Multiple Images: Downloads as a ZIP file.
+
+## SEO & Meta Tags
+
+The project includes optimized meta tags for better search engine visibility and sharing on social platforms.
+
+### Facebook and Twitter Meta Tags
+
+- Title: `Online Image Converter | PNG, JPG, GIF, WebP - Best Quality & Free`
+- Description: `Convert images between PNG, JPG, GIF, and WebP formats with unlimited downloads and conversions. Get the best quality output for free, with no downloads required.`
+- Image Dimensions: 1200x630 px for the Open Graph `og:image`.
+
+## Contributing
+
+Contributions are welcome! Follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeatureName`).
+3. Commit your changes (`git commit -m 'Add YourFeatureName'`).
+4. Push to the branch (`git push origin feature/YourFeatureName`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+For any inquiries or feedback, feel free to reach out:
+
+- **Developer:** Taib Islam Dipu
+- **Portfolio:** [https://taibislamdipu.vercel.app](https://taibislamdipu.vercel.app)
